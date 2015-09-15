@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+ 
+            //Set the Type.
+            script.type = "text/javascript";
+ 
+            //Set the source to the URL the JSON Service.
+            script.src = "http://www.telize.com/jsonip?callback=DisplayIP";
+ 
+           //Append the script element to the HEAD section.
+            document.getElementsByTagName("head")[0].appendChild(script);
+        };
+        function DisplayIP(response) {
+            document.getElementById("ipaddress").innerHTML = "Your IP Address is " + response.ip;
+        }
+    </script>
+</head>
+<body>
+    <span id="ipaddress"></span>
+</body>
+</html>

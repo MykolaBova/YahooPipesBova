@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Super Yahoo pipes</h1>
+    <script type="text/javascript">
+        window.onload = function () {
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+ 
+            //Set the Type.
+            script.type = "text/javascript";
+ 
+            //Set the source to the URL the JSON Service.
+            script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
+ 
+           //Append the script element to the HEAD section.
+            document.getElementsByTagName("head")[0].appendChild(script);
+        };
+        function DisplayNews(response) {
+            //document.getElementById("ipaddress").innerHTML = "Your IP Address is " + response.ip;
+            console.log(response);
+            //document.getElementById("info-1").innerHTML = "Response " + response.count;
+            //document.getElementById("info-1").innerHTML = "Response " + response.count;
+
+            /// NASA astronaut Scott Kelly (@StationCDRKelly) captured photographs and video of auroras on June 22, 2015. Kelly wrote, "Yesterday's aurora was an impressive show from 250 miles up. Good morning from the International Space Station! ‪#‎YearInSpace‬"
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].description;
+            /// http://www.nasa.gov/image-feature/flying-over-an-aurora
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].link;
+            /// NASA Image of the Day
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].source.content;
+            /// http://www.nasa.gov/rss/dyn/image_of_the_day.rss
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].source.url;
+            /// http://www.nasa.gov/sites/default/files/thumbnails/image/18964422099_a371167fa5_o.jpg
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].enclosure.url;
+            /// Flying Over An Aurora
+            //document.getElementById("info-1").innerHTML = "Response " + response.value.items[0].title;
+        }
+    </script>    
+  </head>
+<body>
+  <table class="news-table">
+    <tr>
+      <td id="info-1">i1</td>
+      <!-- <td>c1</td> -->
+    </tr>
+<!--     <tr>
+      <td>i2</td>
+      <td>c2</td>
+    </tr> -->
+  <table>
+</body>
+</html>

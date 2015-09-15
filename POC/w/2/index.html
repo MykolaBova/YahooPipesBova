@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Super Yahoo pipes</h1>
+    <script type="text/javascript">
+        window.onload = function () {
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+ 
+            //Set the Type.
+            script.type = "text/javascript";
+ 
+            //Set the source to the URL the JSON Service.
+            script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
+ 
+           //Append the script element to the HEAD section.
+            document.getElementsByTagName("head")[0].appendChild(script);
+        };
+        function DisplayNews(response) {
+            //document.getElementById("ipaddress").innerHTML = "Your IP Address is " + response.ip;
+            console.log(response);
+        }
+    </script>    
+  </head>
+<body>
+  <table class="news-table">
+    <tr>
+      <td>i1</td>
+      <td>c1</td>
+    </tr>
+    <tr>
+      <td>i2</td>
+      <td>c2</td>
+    </tr>
+  <table>
+</body>
+</html>

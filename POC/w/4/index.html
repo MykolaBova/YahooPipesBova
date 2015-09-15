@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Super Yahoo pipes</h1>
+    <script type="text/javascript">
+        window.onload = function () {
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+ 
+            //Set the Type.
+            script.type = "text/javascript";
+ 
+            //Set the source to the URL the JSON Service.
+            script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
+ 
+           //Append the script element to the HEAD section.
+            document.getElementsByTagName("head")[0].appendChild(script);
+        };
+        function DisplayNews(response) {
+            var i;
+
+            console.log(response);
+            
+            /// http://www.nasa.gov/sites/default/files/thumbnails/image/18964422099_a371167fa5_o.jpg
+            /// image
+            i = 0;
+            document.getElementById("image-"+i).src = response.value.items[0].enclosure.url;
+            
+            /// Flying Over An Aurora
+            /// title
+            document.getElementById("title-0").innerHTML = response.value.items[0].title;
+
+
+            /// NASA astronaut Scott Kelly (@StationCDRKelly) captured photographs and video of auroras on June 22, 2015. Kelly wrote, "Yesterday's aurora was an impressive show from 250 miles up. Good morning from the International Space Station! ‪#‎YearInSpace‬"
+            // summary
+            document.getElementById("summary-0").innerHTML = response.value.items[0].description;
+
+            /// http://www.nasa.gov/image-feature/flying-over-an-aurora
+            /// article_link
+            document.getElementById("article-link-0").href = response.value.items[0].link;
+
+        }
+    </script>    
+  </head>
+<body>
+  <table class="news-table">
+    <tr>
+      <td>
+        <img id="image-0" height="50" width="50"/>
+      </td>
+      <td id="title-0"></td>
+      <td id="summary-0"></td>
+      <td>
+        <a id="article-link-0">More---></a>
+      </td>
+    </tr>
+  <table>
+</body>
+</html>

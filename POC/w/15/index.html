@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Super Yahoo pipes</h1>
+    
+    <style>
+    #errors-block {
+        color: red;
+    }
+    </style>
+
+    <script type="text/javascript">
+
+        // on error show error in error block
+        var OnScriptError = function () {
+              document.getElementById("errors-block").innerHTML = "Error during script generation. src:" 
+                + this.src;
+        };
+
+        // "clean" aererors blocl
+        var CleanError = function () {
+              document.getElementById("errors-block").innerHTML = "";
+        };
+
+        // questions 1
+        // 1 - checks - how much - what makes sense?
+        // 2 - pictures too big - is there a where to get small ones using some magic?
+        // 3 - iterating elements - how much functional style is better that declarative one?
+        // 4 - any comments regarding my code?
+
+        // receive news from yahoo server
+        window.onload = function () {
+            CleanError();
+
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+ 
+            //Set the Type.
+            script.type = "text/javascript";
+ 
+            //Set the source to the URL the JSON Service.
+            script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
+            
+            script.onerror = OnScriptError;
+ 
+           //Append the script element to the HEAD section.
+            document.getElementsByTagName("head")[0].appendChild(script);
+        };
+
+        // Display all received news on the page
+        function DisplayNews(response) {
+            var i;
+
+            console.log(response);
+
+            //for(i = 0; i < response.count; i++) {
+            for(i = 0; i < 2; i++) {
+                CreateMainDivBlock(i);
+            }
+            
+/*            
+            for(i = 0; i < 10; i++) {
+              /// http://www.nasa.gov/sites/default/files/thumbnails/image/18964422099_a371167fa5_o.jpg
+              /// image
+              document.getElementById("image-"+i).src = response.value.items[i].enclosure.url;
+              
+              /// Flying Over An Aurora
+              /// title
+              document.getElementById("title-"+i).innerHTML = response.value.items[i].title;
+
+
+              /// NASA astronaut Scott Kelly (@StationCDRKelly) captured photographs and video of auroras on June 22, 2015. Kelly wrote, "Yesterday's aurora was an impressive show from 250 miles up. Good morning from the International Space Station! ‪#‎YearInSpace‬"
+              // summary
+              document.getElementById("summary-"+i).innerHTML = response.value.items[i].description;
+
+              /// http://www.nasa.gov/image-feature/flying-over-an-aurora
+              /// article_link
+              document.getElementById("article-link-"+i).href = response.value.items[i].link;
+            }
+*/
+
+        }
+
+        // "main" div for article block
+        var CreateMainDivBlock = function(id) {
+            var div = document.createElement("div");
+            var parentId = "article-"+id;
+            var imgDivId;
+
+            div.id = parentId;
+            div.innerHTML = div.id;
+            document.getElementById("news").appendChild(div);
+
+            imgDivId = CreateDivBlock(id, parentId, "img");
+            CreateImgBlock(id, imgDivId, "image");
+
+            CreateDivBlock(id, parentId, "title");
+            CreateDivBlock(id, parentId, "summary");
+            CreateDivBlock(id, parentId, "lnk");
+        }
+
+        // div for an "elementName-<id>" block
+        var CreateDivBlock = function(id, parentId, elementName) {
+            var div = document.createElement("div");
+            var elementId = elementName+"-"+id;
+            div.id = elementId;
+            div.innerHTML = div.id;
+            document.getElementById(parentId).appendChild(div);
+            return elementId;
+        }
+
+        // img block
+        var CreateImgBlock = function(id, parentId, elementName) {
+            var img = document.createElement("img");
+            var elementId = elementName+"-"+id;
+            img.id = elementId;
+            img.innerHTML = img.id;
+            img.style.width = "50px";
+            img.style.height = "50px";          
+            document.getElementById(parentId).appendChild(img);
+        }
+
+        // a href block
+        var CreateLnkBlock = function(id, parentId, elementName) {
+
+        }
+
+    </script>
+  </head>
+<body>
+  <div id="errors-block">
+  </div>
+  <div id="news">
+<!--     <tr>
+      <td>
+        <img id="image-0" height="50" width="50"/>
+      </td>
+      <td id="title-0"></td>
+      <td id="summary-0"></td>
+      <td>
+        <a id="article-link-0">More-></a>
+      </td>
+    </tr>
+-->    
+  </div>
+</body>
+</html>
