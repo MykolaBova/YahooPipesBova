@@ -142,32 +142,28 @@
             CreateImgBlock(id, imgId, "image");
 
             CreateDivBlock(id, parentId, "title");
-            // hide summary at the begining
-            // TODO: put at separate function later
-            var summaryId = CreateDivBlock(id, parentId, "summary");
-            var summary = document.getElementById(summaryId);
-            summary.style.visibility = 'hidden';
+            CreateDivBlock(id, parentId, "summary");
 
             aId = CreateDivBlock(id, parentId, "lnk");
             CreateLnkBlock(id, aId, "article-link");
         }
 
         var ProcessDivOnClick = function(e) {
+            console.log(e);
+
             var elemId = e.srcElement.id;
             // image-1
-            ////console.log(elemId);
+            console.log(elemId);
+
             var res = elemId.split("-");
-            var clickedId = res[1];
-            console.log(clickedId);
+            console.log(res[1]);
 
             ///console.log("Clicked!!!");
-            var visible = document.getElementById("article-link-"+clickedId).style.visibility;
+            var visible = document.getElementById("article-link-0").style.visibility;
             if(visible === 'visible') {
-                document.getElementById("article-link-"+clickedId).style.visibility = 'hidden';
-                document.getElementById("summary-"+clickedId).style.visibility = 'hidden';
+              document.getElementById("article-link-0").style.visibility = 'hidden'; 
             } else {
-                document.getElementById("article-link-"+clickedId).style.visibility = 'visible'; 
-                document.getElementById("summary-"+clickedId).style.visibility = 'visible';
+              document.getElementById("article-link-0").style.visibility = 'visible'; 
             }
         }
 
@@ -186,7 +182,7 @@
             var elementId = elementName+"-"+id;
             img.id = elementId;
             img.width = 50;
-            img.height = 50;
+            img.height = 50;          
             document.getElementById(parentId).appendChild(img);
         }
 
