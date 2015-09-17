@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Intro</title>
+</head>
+<body> 
+    <div id="pageContent">
+        <h1>ASP.NET Bookstore</h1>
+        <div id="bookContainer"></div>
+    </div>
+
+    <script type="text/javascript" src="jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="jquery.tmpl.js"></script>
+ 
+    <script id="bookTemplate" type="text/x-jQuery-tmpl">
+        <div>
+            <img src="${picture}" width=50 height=50 alt="" />
+            <h2>${title}</h2>
+            price: ${price}
+        </div>
+    </script>
+ 
+    <script type="text/javascript">
+        // Create an array of books
+        var books = [
+            { title: "ASP.NET 4 Unleashed", price: 37.79, picture: "1.jpg" },
+            { title: "ASP.NET MVC Unleashed", price: 44.99, picture: "2.jpg" },
+            { title: "ASP.NET Kick Start", price: 4.00, picture: "3.jpg" },
+            { title: "ASP.NET MVC Unleashed iPhone", price: 44.99, picture: "4.jpg" },
+        ];
+ 
+        // Render the books using the template
+        $("#bookTemplate").tmpl(books).appendTo("#bookContainer"); 
+    </script> 
+</body>
+</html>
