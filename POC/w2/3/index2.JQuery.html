@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Super Yahoo pipes</h1>
+    <script type="text/javascript" src="jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="jquery.tmpl.js"></script>  
+  </head>
+    <body>
+        <div id="news">
+        </div>
+         <script id="bookTemplate" type="text/x-jQuery-tmpl">
+            <div>
+                <p>${title}</p>
+                <p>${description}</p>
+                <p>${link}</p>
+                <p>${enclosure.url}</p>
+            </div>
+        </script>
+
+        <script type="text/javascript">
+            // -----------------------------------------------------------------------------------------
+            // receive news from yahoo server
+            // -----------------------------------------------------------------------------------------
+            window.onload = function () {
+                //Create a SCRIPT element.
+                var script = document.createElement("script");
+                //Set the Type.
+                script.type = "text/javascript";
+                //Set the source to the URL the JSON Service.
+                script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
+               //Append the script element to the HEAD section.
+                document.getElementsByTagName("head")[0].appendChild(script);
+            };
+
+            // -----------------------------------------------------------------------------------------
+            // Display all received news on the page
+            // -----------------------------------------------------------------------------------------
+            function DisplayNews(response) {
+                $("#bookTemplate").tmpl(response.value.items).appendTo("#news"); 
+            }
+        </script>
+    </body>
+</html>

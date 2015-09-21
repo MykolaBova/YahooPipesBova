@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>Template Test</title>
+  
+    <script type="text/javascript" src="jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="jquery.tmpl.js"></script>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+   
+          var clientData = [
+              { name: "Rey Bango", age: 42, id: 1, phone: [ "954-600-1234", "954-355-5555" ] },
+              { name: "Mark Goldberg", age: 51, id: 2, phone: ["617-777-1234", "617-222-3333"] },
+              { name: "Jen Statford", age: "25", id: 3, phone: ["608-555-5647", "608-645-8855"] }
+          ];
+   
+          $("#clientTemplate").tmpl(clientData).appendTo("div");
+   
+    });
+  </script>
+
+<script type="text/javascript">
+    var iii = 0;
+    function count()
+    {
+        return iii++;
+    }
+</script>  
+
+<script id="clientTemplate" type="text/html">
+    <p>
+      Count:  ${count()} <br/>
+      ${id} <br/>
+      ${name} - Age: ${age}
+    </p>
+    {{tmpl($data) "#phoneTemplate"}}
+</script>
+
+<script id="phoneTemplate" type="text/html">
+    <ul>{{each phone}}<li>${$value}</li>{{/each}}</ul>
+</script>
+
+</head>
+  
+<body>
+  <div></div>
+</body>
+
+</html>

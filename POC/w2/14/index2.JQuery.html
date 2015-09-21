@@ -29,12 +29,42 @@
             // -----------------------------------------------------------------------------------
             // Show/hide elements on click in parent div
             // -----------------------------------------------------------------------------------
-            var ProcessDivOnClick = function(elem) {
+            var ProcessDivOnClick = function(e) {
+                /*                             
+                        <div id="article" onclick="ProcessDivOnClick(this);">
+                          <div id="img"><img height="50" id="image" src="http://www.nasa.gov/sites/default/files/thumbnails/image/wolf_ast_2015162_lrg.jpg" width="50">
+                          </div>
+                          <div id="title"> Eruption of Wolf Volcano, Galapagos Islands </div>
+                          <div id="summary"> In late May 2015, the highest volcano in the Galapagos Islands, Wolf volcano, erupted for the first time in 33 years. The wide image and closeup of Wolf was acquired on June 11, 2015, by the ASTER instrument on NASA's Terra satellite. The false-color images combine near-infrared, red, and green light (ASTER bands 3-2-1). </div>20
+                          <div id="lnk"> <a href="http://www.nasa.gov/image-feature/eruption-of-wolf-volcano-galapagos-islands" id="article-link">-&gt;</a> </div>
+                        </div>
+                */
+                var elem = e;
                 var lnk = elem.find('#lnk');
-                var summary = elem.find('#summary');
+                //lnk.hide();
                 console.log(lnk.is(':visible'));
                 lnk.is(':visible') === true ? lnk.hide() : lnk.show();
-                summary.is(':visible') === true ? summary.hide() : summary.show();
+                
+                /*
+                var elemId = e.srcElement.id;
+                // image-1
+                ////console.log(elemId);
+                var res = elemId.split("-");
+                var clickedId = res[1];
+                console.log(clickedId);
+                */
+
+                ///console.log("Clicked!!!");
+                /*
+                var visible = document.getElementById("article-link-"+clickedId).style.visibility;
+                if(visible === 'visible') {
+                    document.getElementById("article-link-"+clickedId).style.visibility = 'hidden';
+                    document.getElementById("summary-"+clickedId).style.visibility = 'hidden';
+                } else {
+                    document.getElementById("article-link-"+clickedId).style.visibility = 'visible'; 
+                    document.getElementById("summary-"+clickedId).style.visibility = 'visible';
+                }
+                */
             }
 
 // TODO

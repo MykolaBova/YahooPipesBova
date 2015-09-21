@@ -9,34 +9,30 @@
 <div id="news">
 </div>
 <script id="bookTemplate" type="text/x-jQuery-tmpl">
-<div id="article" onclick="ProcessDivOnClick($(this));">
-    <div id="img"><img height="50" id="image" src=
+<div id="article-${count()}">
+    <div id="img-${count()}"><img height="50" id="image-${count()}" src=
     ${enclosure.url}
     width="50"></div>
-    <div id="title">
+    <div id="title-${count()}">
         ${title}
     </div>
-    <div id="summary">
+    <div id="summary-${count()}">
         ${description}
     </div>20
-    <div id="lnk">
+    <div id="lnk-${count()}">
         <a href=${link}
-        id="article-link">-&gt;</a>
+        id="article-link-${count()}">-&gt;</a>
     </div>
 </div>
 </script>
+<script type="text/javascript">
+    var iii = 0;
+    function count()
+    {
+        return iii++;
+    }
+</script>
         <script type="text/javascript">
-            // -----------------------------------------------------------------------------------
-            // Show/hide elements on click in parent div
-            // -----------------------------------------------------------------------------------
-            var ProcessDivOnClick = function(elem) {
-                var lnk = elem.find('#lnk');
-                var summary = elem.find('#summary');
-                console.log(lnk.is(':visible'));
-                lnk.is(':visible') === true ? lnk.hide() : lnk.show();
-                summary.is(':visible') === true ? summary.hide() : summary.show();
-            }
-
 // TODO
 // 1 - use jqury instead js
 // 2 - use just one global variable        
@@ -51,8 +47,7 @@
                 //Set the source to the URL the JSON Service.
                 script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
                //Append the script element to the HEAD section.
-                //document.getElementsByTagName("head")[0].appendChild(script);
-                $('head')[0].appendChild(script);
+                document.getElementsByTagName("head")[0].appendChild(script);
             };
 
             // -----------------------------------------------------------------------------------------
