@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="jquery-1.4.4.js"></script>
-<script type="text/javascript" src="jquery.tmpl.js"></script>
-<h1>Super Yahoo pipes</h1>
+    <script type="text/javascript" src="jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="jquery.tmpl.js"></script>
+    <title>Super Yahoo pipes</title>
 </head>
 <body>
-<div id="news">
-</div>
-<script id="bookTemplate" type="text/x-jQuery-tmpl">
-<div id="article" onclick="ProcessDivOnClick($(this));">
-    <div id="img"><img height="50" id="image" src=
-    ${enclosure.url}
-    width="50"></div>
-    <div id="title">
-        ${title}
-    </div>
-    <div id="summary">
-        ${description}
-    </div>20
-    <div id="lnk">
-        <a href=${link}
-        id="article-link">-&gt;</a>
-    </div>
-</div>
+<h1>Super Yahoo pipes</h1>
+<div id="news"></div>
+
+<script type="text/javascript">
+    'use strict';
+
+    var myApp = (function(){
+        // -----------------------------------------------------------------------------------
+        // Show/hide elements on click in parent div
+        // -----------------------------------------------------------------------------------
+        var processDivOnClick = function (elem) {
+            elem.find('.toggling').toggle();
+        };
+
+        // -----------------------------------------------------------------------------------------
+        // receive news from yahoo server
+        // -----------------------------------------------------------------------------------------
+        var onload = function () {
+            //Create a SCRIPT element.
+            var script = document.createElement("script");
+            //Set the Type.
+            script.type = "text/javascript";
+            //Set the source to the URL the JSON Service.
+            script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=displayNews";
+            //Append the script element to the HEAD section.
+            $('head')[0].appendChild(script);
+        };
+
+        // -----------------------------------------------------------------------------------------
+        // Display all received news on the page
+        // -----------------------------------------------------------------------------------------
+        window.displayNews = function (response) {
+            $("#bookTemplate").tmpl(response.value.items).appendTo("#news");
+            delete window.displayNews;
+            delete window.onload;
+        };
+
+        return {
+            onload: onload,
+            processDivOnClick: processDivOnClick
+        };
+    })();
+
+    window.onload = myApp.onload;
 </script>
-        <script type="text/javascript">
-            // -----------------------------------------------------------------------------------
-            // Show/hide elements on click in parent div
-            // -----------------------------------------------------------------------------------
-            var ProcessDivOnClick = function(elem) {
-                var lnk = elem.find('#lnk');
-                var summary = elem.find('#summary');
-                console.log(lnk.is(':visible'));
-                lnk.is(':visible') === true ? lnk.hide() : lnk.show();
-                summary.is(':visible') === true ? summary.hide() : summary.show();
-            }
 
-// TODO
-// 1 - use jqury instead js
-// 2 - use just one global variable        
-            // -----------------------------------------------------------------------------------------
-            // receive news from yahoo server
-            // -----------------------------------------------------------------------------------------
-            window.onload = function () {
-                //Create a SCRIPT element.
-                var script = document.createElement("script");
-                //Set the Type.
-                script.type = "text/javascript";
-                //Set the source to the URL the JSON Service.
-                script.src = "http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=DisplayNews";
-               //Append the script element to the HEAD section.
-                //document.getElementsByTagName("head")[0].appendChild(script);
-                $('head')[0].appendChild(script);
-            };
-
-            // -----------------------------------------------------------------------------------------
-            // Display all received news on the page
-            // -----------------------------------------------------------------------------------------
-            function DisplayNews(response) {
-                $("#bookTemplate").tmpl(response.value.items).appendTo("#news"); 
-            }
-        </script>
-    </body>
+<script id="bookTemplate" type="text/x-jquery-tmpl">
+    <div id="article" onclick="myApp.processDivOnClick($(this));">
+        <div id="img">
+            <img height="50" id="image" src="${enclosure.url}" width="50">
+        </div>
+        <div id="title">
+            ${title}
+        </div>
+        <div id="summary" class="toggling">
+            ${description}
+        </div>
+        <div id="lnk" class="toggling">
+            <a href="${link}" id="article-link">-&gt;</a>
+        </div>
+    </div>
+</script>
+</body>
 </html>
