@@ -9,37 +9,23 @@
     <link href="css/app.css" rel="stylesheet"/>
 
     <!-- Library Scripts -->
-    <script src="js/angular.js"></script>
     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
     <script type="text/javascript" src="js/jquery.tmpl.js"></script>
+    <script src="js/angular.js"></script>
 
     <!-- Application Script -->
     <script src="app/app.js"></script>
+    <script src="app/common.js"></script>
 
     <!-- Product Controllers -->
     <script src="app/controllers/newsCtrl.js"></script>
 </head>
 
 <body ng-app="news">
-    <script type="text/javascript">
-        'use strict';
-        var myApp = (function(){
-            // -----------------------------------------------------------------------------------
-            // Show/hide elements on click in parent div
-            // -----------------------------------------------------------------------------------
-            var processDivOnClick = function (elem) {
-                elem.find('.toggling').toggle();
-            };
-            return {
-                processDivOnClick: processDivOnClick
-            };
-        })();
-    </script>
-
     <div class="table" ng-controller="NewsCtrl as vm">
         <div ng-repeat="new in vm.news.value.items" onclick="myApp.processDivOnClick($(this));">
             <div id="img">
-                <img height="50" id="image" src="{{new.enclosure.url}}" width="50">
+                <img height="50" id="image" ng-src="{{new.enclosure.url}}" width="50">
             </div>
             <div id="title">
                 {{new.title}}
@@ -48,7 +34,7 @@
                 {{new.description}}
             </div>
             <div id="lnk" class="toggling">
-                <a href="{{new.link}}" id="article-link">-&gt;</a>
+                <a ng-href="{{new.link}}" id="article-link">-&gt;</a>
             </div>
         </div>
     </div>

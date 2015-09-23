@@ -405,12 +405,5 @@
                     ]
                 }
             };
-
-        vm.showImage = false;
-
-        vm.toggleImage = function() {
-            vm.showImage = !vm.showImage;
-        }
-
     }
 }());
