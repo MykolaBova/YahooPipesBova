@@ -10,6 +10,8 @@
 
     <!-- Library Scripts -->
     <script src="js/angular.js"></script>
+    <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="js/jquery.tmpl.js"></script>
 
     <!-- Application Script -->
     <script src="app/app.js"></script>
@@ -19,40 +21,26 @@
 </head>
 
 <body ng-app="news">
-
-<script type="text/javascript">
-    'use strict';
-
-    var myApp = (function(){
-        // -----------------------------------------------------------------------------------
-        // Show/hide elements on click in parent div
-        // -----------------------------------------------------------------------------------
-        var processDivOnClick = function (elem) {
-            elem.find('.toggling').toggle();
-        };
-
-        return {
-            processDivOnClick: processDivOnClick
-        };
-    })();
-
-    window.onload = myApp.onload;
-</script>
+    <script type="text/javascript">
+        'use strict';
+        var myApp = (function(){
+            // -----------------------------------------------------------------------------------
+            // Show/hide elements on click in parent div
+            // -----------------------------------------------------------------------------------
+            var processDivOnClick = function (elem) {
+                elem.find('.toggling').toggle();
+            };
+            return {
+                processDivOnClick: processDivOnClick
+            };
+        })();
+    </script>
 
     <div class="table" ng-controller="NewsCtrl as vm">
-
-
-<!--
-            {{vm.news.count}}
-            {{vm.news}}
--->
-        <div ng-repeat="new in vm.news.value.items">
-            {{new.title}}
-
+        <div ng-repeat="new in vm.news.value.items" onclick="myApp.processDivOnClick($(this));">
             <div id="img">
                 <img height="50" id="image" src="{{new.enclosure.url}}" width="50">
             </div>
-
             <div id="title">
                 {{new.title}}
             </div>
@@ -63,68 +51,6 @@
                 <a href="{{new.link}}" id="article-link">-&gt;</a>
             </div>
         </div>
-
-
-        </div>
-
-<!--        <tr ng-repeat="new in vm.getItems()">
-            <td>{{ new.title}}</td>
-        </tr>-->
-
-
-<!--
-        <div id="img">
-            <img height="50" id="image" src="${enclosure.url}" width="50">
-        </div>
-
-        <div id="title">
-                ${title}
-            </div>
-            <div id="summary" class="toggling">
-                ${description}
-            </div>
-            <div id="lnk" class="toggling">
-                <a href="${link}" id="article-link">-&gt;</a>
-            </div>
-        </div>
--->
-
-<!--
-    <div class="panel-body">
-        <table class="table" ng-controller="NewsCtrl as vm">
-
-            <thead>
-            <tr>
-                <td>
-                    <button type="button"
-                            class="btn btn-primary"
-                            ng-click="vm.toggleImage()">
-                        {{vm.showImage ? "Hide" : "Show"}} Image
-                    </button>
-                </td>
-                <td>Product</td>
-                <td>Code</td>
-                <td>Available</td>
-                <td>Price</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="new in vm.news">
-                <td>
-                    <img ng-if="vm.showImage"
-                         ng-src="{{new.imageUrl}}"
-                         style="width:50px;margin:2px"
-                         title="{{new.productName}}">
-                </td>
-                <td>{{ new.productName}}</td>
-                <td>{{ new.productCode }}</td>
-                <td>{{ new.releaseDate }}</td>
-                <td>{{ new.price | currency }}</td>
-            </tr>
-            </tbody>
-        </table>
     </div>
--->
-
 </body>
 </html>
