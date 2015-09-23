@@ -19,13 +19,61 @@
 </head>
 
 <body ng-app="news">
-<div class="panel panel-primary">
-    <div class="panel-heading"
-         style="font-size:large">News List
+
+<script type="text/javascript">
+    'use strict';
+
+    var myApp = (function(){
+        // -----------------------------------------------------------------------------------
+        // Show/hide elements on click in parent div
+        // -----------------------------------------------------------------------------------
+        var processDivOnClick = function (elem) {
+            elem.find('.toggling').toggle();
+        };
+
+        return {
+            processDivOnClick: processDivOnClick
+        };
+    })();
+
+    window.onload = myApp.onload;
+</script>
+
+    <div class="table" ng-controller="NewsCtrl as vm">
+
+
+<!--
+            {{vm.news.count}}
+            {{vm.news}}
+-->
+        <div ng-repeat="new in vm.news.value.items">
+            {{new.title}}
+        </div>
+
+<!--        <tr ng-repeat="new in vm.getItems()">
+            <td>{{ new.title}}</td>
+        </tr>-->
+
     </div>
 
 <!--
+        <div id="img">
+            <img height="50" id="image" src="${enclosure.url}" width="50">
+        </div>
 
+        <div id="title">
+                ${title}
+            </div>
+            <div id="summary" class="toggling">
+                ${description}
+            </div>
+            <div id="lnk" class="toggling">
+                <a href="${link}" id="article-link">-&gt;</a>
+            </div>
+        </div>
+-->
+
+<!--
     <div class="panel-body">
         <table class="table" ng-controller="NewsCtrl as vm">
 
@@ -62,7 +110,5 @@
     </div>
 -->
 
-</div>
 </body>
-
 </html>

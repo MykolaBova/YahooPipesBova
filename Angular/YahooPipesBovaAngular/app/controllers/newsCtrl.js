@@ -11,7 +11,7 @@
     function NewsCtrl() {
         var vm = this;
 
-        vm.news = [
+        vm.news =
             {
                 "count": 10,
                 "value": {
@@ -404,8 +404,16 @@
                         }
                     ]
                 }
-            }
-        ];
+            };
+
+        vm.getItems = function() {
+            return vm.news.value.items;
+        };
+
+        vm.getCount = function() {
+            return vm.news.count;
+        };
+
 /*
         vm.news = [
             {" productId": 1,
