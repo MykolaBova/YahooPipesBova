@@ -8,10 +8,32 @@
         .controller("NewsCtrl",
                     NewsCtrl);
 
-    function NewsCtrl() {
+    function NewsCtrl($scope, $http) {
         var vm = this;
 
-        vm.news =
+        ////$http.jsonp("http://angularjs.org/greet.php?callback=JSON_CALLBACK&name=Super%20Hero").
+        $http.jsonp("http://pipes.yahoo.com/pipes/pipe.run?_id=e9a2e77dffb3205d035c4e311d77bbe6&_render=json&_callback=JSON_CALLBACK").
+        success(function(data) {
+
+            console.log(data);
+/*
+            $scope.data = data;
+            $scope.name = data.name;
+            $scope.salutation = data.salutation;
+            $scope.greeting = data.greeting;
+
+            $("[ng-model='nameNew']").val(data.name);
+            $("[ng-model='salutation']").val(data.salutation);
+            $("[ng-model='greeting']").val(data.greeting);
+*/
+            vm.news = data;
+        }).
+        error(function (data) {
+            $scope.data = "Request failed";
+        });
+
+
+        vm.news1 =
             {
                 "count": 10,
                 "value": {

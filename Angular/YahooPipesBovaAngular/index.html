@@ -22,6 +22,7 @@
 </head>
 
 <body ng-app="news">
+
     <div class="table" ng-controller="NewsCtrl as vm">
         <div ng-repeat="new in vm.news.value.items" onclick="myApp.processDivOnClick($(this));">
             <div id="img">
@@ -37,6 +38,8 @@
                 <a ng-href="{{new.link}}" id="article-link">-&gt;</a>
             </div>
         </div>
+        test
     </div>
+
 </body>
 </html>
