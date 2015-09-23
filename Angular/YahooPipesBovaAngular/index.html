@@ -48,13 +48,29 @@
 -->
         <div ng-repeat="new in vm.news.value.items">
             {{new.title}}
+
+            <div id="img">
+                <img height="50" id="image" src="{{new.enclosure.url}}" width="50">
+            </div>
+
+            <div id="title">
+                {{new.title}}
+            </div>
+            <div id="summary" class="toggling">
+                {{new.description}}
+            </div>
+            <div id="lnk" class="toggling">
+                <a href="{{new.link}}" id="article-link">-&gt;</a>
+            </div>
+        </div>
+
+
         </div>
 
 <!--        <tr ng-repeat="new in vm.getItems()">
             <td>{{ new.title}}</td>
         </tr>-->
 
-    </div>
 
 <!--
         <div id="img">
