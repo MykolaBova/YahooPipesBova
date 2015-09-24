@@ -11,7 +11,7 @@
         vm.errors = [];
 
         Serv
-            .getNews()
+            .sendJson()
             .then(
                 function(response){
                     vm.news = response.data;
