@@ -18,12 +18,13 @@
     <script src="app/common.js"></script>
 
     <!-- Product Controllers -->
-    <script src="app/controllers/newsCtrl.js"></script>
+    <script src="app/controllers/newsCtrl2.js"></script>
+    <script src="app/serv/serv.js"></script>
 </head>
 
 <body ng-app="news">
 
-    <div class="table" ng-controller="NewsCtrl as vm">
+    <div class="table" ng-controller="NewsCtrl2 as vm">
         <div ng-repeat="new in vm.news.value.items" onclick="myApp.processDivOnClick($(this));">
             <div id="img">
                 <img height="50" id="image" ng-src="{{new.enclosure.url}}" width="50">
