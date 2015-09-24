@@ -40,9 +40,9 @@
             </div>
         </div>
 
-        <pre ng-model="data">
-                {{data}}
-        </pre>
+        <h1 class="well text-center" ng-if="vm.errors.length" ng-repeat="error in vm.errors">
+            {{error}}
+        </h1>
 
     </div>
 </body>
