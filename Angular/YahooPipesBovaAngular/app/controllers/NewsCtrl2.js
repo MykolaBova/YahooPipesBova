@@ -19,5 +19,9 @@
                 function(){
                     vm.errors.push("Sorry, error retrieving data. Please, try again later.");
                 });
+
+        vm.toggleDescription = function(post){
+            post.show = !post.show;
+        };
     }
 }());

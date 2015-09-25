@@ -25,17 +25,17 @@
 <body ng-app="news">
 
     <div class="table" ng-controller="NewsCtrl2 as vm">
-        <div ng-repeat="new in vm.news.value.items" onclick="myApp.processDivOnClick($(this));">
-            <div id="img">
+        <div ng-repeat="new in vm.news.value.items">
+            <div id="img" ng-click="vm.toggleDescription(new)">
                 <img height="50" id="image" ng-src="{{new.enclosure.url}}" width="50">
             </div>
             <div id="title">
                 {{new.title}}
             </div>
-            <div id="summary" class="toggling">
+            <div id="summary" class="toggling" ng-show="new.show">
                 {{new.description}}
             </div>
-            <div id="lnk" class="toggling">
+            <div id="lnk" class="toggling" ng-show="new.show">
                 <a ng-href="{{new.link}}" id="article-link">-&gt;</a>
             </div>
         </div>
