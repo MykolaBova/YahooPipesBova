@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Acme Product Management</title>
+    <title>Yahoo pipeline on Angular JS</title>
 
     <!-- Style sheets -->
     <link href="css/bootstrap.css" rel="stylesheet"/>
@@ -15,32 +15,30 @@
     <script src="app/app.js"></script>
 
     <!-- Product Controllers -->
-    <script src="app/serv/serv.js"></script>
-    <script src="app/controllers/newsCtrl2.js"></script>
+    <script src="app/services/newsService.js"></script>
+    <script src="app/controllers/newsController.js"></script>
 </head>
 
 <body ng-app="news">
-
-    <div class="table" ng-controller="NewsCtrl2 as vm">
-        <div ng-repeat="new in vm.news.value.items">
-            <div id="img" ng-click="vm.toggleDescription(new)">
-                <img height="50" id="image" ng-src="{{new.enclosure.url}}" width="50">
+    <div class="table" ng-controller="NewsCtrl as vm">
+        <div ng-repeat="newsItem in vm.news">
+            <div id="img" ng-click="newsItem.show = !newsItem.show">
+                <img height="50" id="image" ng-src="{{newsItem.enclosure.url}}" width="50">
             </div>
             <div id="title">
-                {{new.title}}
+                {{newsItem.title}}
             </div>
-            <div id="summary" class="toggling" ng-show="new.show">
-                {{new.description}}
+            <div id="summary" ng-show="newsItem.show">
+                {{newsItem.description}}
             </div>
-            <div id="lnk" class="toggling" ng-show="new.show">
-                <a ng-href="{{new.link}}" id="article-link">-&gt;</a>
+            <div id="lnk" ng-show="newsItem.show">
+                <a ng-href="{{newsItem.link}}" id="article-link">-&gt;</a>
             </div>
         </div>
 
         <h1 class="well text-center" ng-if="vm.errors.length" ng-repeat="error in vm.errors">
             {{error}}
         </h1>
-
     </div>
 </body>
 </html>
